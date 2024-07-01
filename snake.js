@@ -6,7 +6,6 @@ const ctx = $canvas.getContext('2d')
 const $startButton = $get('#start-btn')
 const $startMenu = $get('.start-menu')
 
-
 const highScore = window.localStorage.getItem('highScore') || 0
 const $highScore = $get('#high-score')
 $highScore.textContent = highScore
@@ -18,7 +17,7 @@ let direction = 'right'
 let olderDirection = 'right'
 let intervalId = null
 
-function checkInput (event) {
+function checkInput(event) {
   switch (event.keyCode) {
     case 37:
       direction = 'left'
@@ -46,7 +45,7 @@ function checkInput (event) {
   }
 }
 
-function drawSnake (direction) {
+function drawSnake(direction) {
   // Borrar el canvas
   ctx.clearRect(0, 0, $canvas.width, $canvas.height)
   const head = { x: snake[0].x, y: snake[0].y }
@@ -86,12 +85,12 @@ function drawSnake (direction) {
   olderDirection = direction
 }
 
-function drawApple () {
+function drawApple() {
   ctx.fillStyle = 'red'
   ctx.fillRect(apple.x * gridSize, apple.y * gridSize, gridSize, gridSize)
 }
 
-function generateRandomApples () {
+function generateRandomApples() {
   apple.x = Math.floor(Math.random() * 20)
   apple.y = Math.floor(Math.random() * 20)
 
@@ -106,7 +105,7 @@ function generateRandomApples () {
   drawApple()
 }
 
-function checkApple () {
+function checkApple() {
   if (snake[0].x === apple.x && snake[0].y === apple.y) {
     snake.push({ x: apple.x, y: apple.y })
     $score.textContent = snake.length - 3
@@ -114,7 +113,7 @@ function checkApple () {
   }
 }
 
-function checkColitions () {
+function checkColitions() {
   // Verificar que la cabeza no choque con el cuerpo
   for (let i = 2; i < snake.length; i++) {
     if (snake[1].x === snake[i].x && snake[1].y === snake[i].y) {
@@ -140,7 +139,7 @@ function checkColitions () {
   }
 }
 
-function gameLoop () {
+function gameLoop() {
   drawSnake(direction)
   drawApple()
   checkApple()
