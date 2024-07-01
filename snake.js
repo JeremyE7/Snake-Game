@@ -143,7 +143,7 @@ function gameLoop () {
   drawSnake(direction)
   drawApple()
   checkApple()
-  checkColitions()
+  checkColitions();
 }
 
 $startButton.addEventListener('click', () => {
