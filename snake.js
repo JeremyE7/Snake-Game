@@ -6,6 +6,7 @@ const ctx = $canvas.getContext('2d')
 const $startButton = $get('#start-btn')
 const $startMenu = $get('.start-menu')
 
+
 const highScore = window.localStorage.getItem('highScore') || 0
 const $highScore = $get('#high-score')
 $highScore.textContent = highScore
