@@ -34,4 +34,3 @@ jobs:
 
       - name: Run ESLint
         run: npx eslint . --config .eslintrc.js --ext .js,.jsx,.ts,.tsx --format stylish
-        continue-on-error: true
