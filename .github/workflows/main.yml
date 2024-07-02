@@ -1,18 +1,28 @@
-name: 'Dependency Review'
+name: Dependency Check
+
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   pull_request:
-    branches: ["main"]
-
-permissions:
-  contents: read
+    branches:
+      - main
 
 jobs:
-  dependency-review:
+  audit:
     runs-on: ubuntu-latest
+
     steps:
-      - name: 'Checkout Repository'
-        uses: actions/checkout@v4
-      - name: 'Dependency Review'
-        uses: actions/dependency-review-action@v4
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14' # Puedes ajustar la versión de Node.js según sea necesario
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run npm audit
+      run: npm audit --audit-level=high
