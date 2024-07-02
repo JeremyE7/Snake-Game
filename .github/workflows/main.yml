@@ -19,10 +19,11 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14' # Puedes ajustar la versión de Node.js según sea necesario
+        node-version: '14' # Ajusta la versión de Node.js según sea necesario
 
     - name: Install dependencies
       run: npm install
 
     - name: Run npm audit
-      run: npm audit --audit-level=high
+      run: |
+        npm audit --audit-level=high || exit 1
